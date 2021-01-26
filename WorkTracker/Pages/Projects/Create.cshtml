@@ -29,14 +29,11 @@
                 <span asp-validation-for="Project.Created" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-sm btn-info" />
+                <a class="btn btn-sm btn-info" asp-page="/Index">Back to List</a>
             </div>
-        </form>
+        </form>        
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
 </div>
 
 @section Scripts {
