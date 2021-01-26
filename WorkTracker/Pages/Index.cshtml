@@ -1,0 +1,45 @@
+﻿@page
+@model WorkTracker.Pages.Projects.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a class="btn btn-secondary" asp-page="./Projects/Create">+ New Project</a>
+</p>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Project[0].Name)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Project[0].Description)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Project[0].Created)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Project) {
+        <tr>
+            <td style="width: 70%">
+                <a href="./WorkItems/@item.ProjectId" >@item.Name</a>
+                @*@Html.DisplayFor(modelItem => item.Name)*@
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>*@
+            <td style="width: 20%">
+                @item.Created?.ToShortDateString()
+            </td>
+            <td style="width: 10%">                
+                <a class="btn btn-sm btn-info" asp-page="./Projects/Details" asp-route-id="@item.ProjectId">Details</a>                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
