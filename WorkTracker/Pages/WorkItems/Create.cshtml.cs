@@ -22,7 +22,7 @@ namespace WorkTracker.Pages.WorkItems
         public IActionResult OnGet()
         {
         ViewData["PriorityId"] = new SelectList(_context.Priorities, "PriorityId", "PriorityId");
-        ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "Description");
+        ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "Name");
         ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusId");
             return Page();
         }
@@ -40,6 +40,8 @@ namespace WorkTracker.Pages.WorkItems
 
             _context.WorkItems.Add(WorkItem);
             await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Workitem created!";
 
             return RedirectToPage("./Index");
         }

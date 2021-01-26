@@ -5,20 +5,17 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Work items</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a class="btn btn-secondary" asp-page="Create">+ New Work item</a>    
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.WorkItem[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkItem[0].Description)
-            </th>
+            </th>            
             <th>
                 @Html.DisplayNameFor(model => model.WorkItem[0].Created)
             </th>
@@ -42,12 +39,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
-            </td>
+            </td>            
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Created)
+                @item.Created?.ToShortDateString()
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Completed)
@@ -59,12 +53,10 @@
                 @Html.DisplayFor(modelItem => item.Priority.PriorityId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Project.Description)
+                @Html.DisplayFor(modelItem => item.Project.Name)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <a class="btn btn-sm btn-info" asp-page="./Details" asp-route-id="@item.Id">Details</a>                
             </td>
         </tr>
 }

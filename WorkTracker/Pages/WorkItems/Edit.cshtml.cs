@@ -40,7 +40,7 @@ namespace WorkTracker.Pages.WorkItems
                 return NotFound();
             }
            ViewData["PriorityId"] = new SelectList(_context.Priorities, "PriorityId", "PriorityId");
-           ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "Description");
+           ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "Name");
            ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusId");
             return Page();
         }
@@ -72,6 +72,7 @@ namespace WorkTracker.Pages.WorkItems
                 }
             }
 
+            TempData["Success"] = "Workitem updated!";
             return RedirectToPage("./Index");
         }
 

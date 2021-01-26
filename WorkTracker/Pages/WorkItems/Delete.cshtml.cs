@@ -54,6 +54,7 @@ namespace WorkTracker.Pages.WorkItems
             {
                 _context.WorkItems.Remove(WorkItem);
                 await _context.SaveChangesAsync();
+                TempData["Success"] = "Work item deleted!";
             }
 
             return RedirectToPage("./Index");
