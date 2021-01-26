@@ -42,22 +42,14 @@
         {
 
             if (item.Status.StatusId == "To Do") // "To Do" "In Progress" "Done"
-            {
                 colour = "table-primary";
-            }
-            else if (item.Status.StatusId == "In Progress")
-            {
-                colour = "table-warning";
-            }
-            else if (item.Status.StatusId == "Done")
-            {
-                colour = "table-success";
-            }
-            else
-            {
+            else if (item.Status.StatusId == "In Progress")            
+                colour = "table-warning";            
+            else if (item.Status.StatusId == "Done")            
+                colour = "table-success";            
+            else            
                 colour = "table-light";
-            }
-
+            
             <tr class="@colour">
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
