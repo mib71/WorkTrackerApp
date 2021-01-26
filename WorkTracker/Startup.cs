@@ -30,6 +30,7 @@ namespace WorkTracker
             {
                 options.LowercaseUrls = true;           // all urls lowercase
                 options.AppendTrailingSlash = true;     // trailingSlash after urls
+                options.LowercaseQueryStrings = true;   // querystrings only in lowercase
             });
             services.AddRazorPages();
             services.AddDbContext<AppDbContext>(options =>

@@ -20,9 +20,13 @@ namespace WorkTracker.Pages.WorkItems
         }
 
         public WorkItem WorkItem { get; set; }
+        //[BindProperty(SupportsGet = true)]
+        //public int Id { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+
+        public async Task<IActionResult> OnGetAsync(int? id)    //, int projId
         {
+            //ProjId = projId;
             if (id == null)
             {
                 return NotFound();
@@ -32,6 +36,8 @@ namespace WorkTracker.Pages.WorkItems
                 .Include(w => w.Priority)
                 .Include(w => w.Project)
                 .Include(w => w.Status).FirstOrDefaultAsync(m => m.Id == id);
+
+            //Id = WorkItem.Project.ProjectId;
 
             if (WorkItem == null)
             {
