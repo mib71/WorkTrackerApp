@@ -19,15 +19,15 @@ namespace WorkTracker.Models
         public DateTime? Completed { get; set; }
 
         [Required(ErrorMessage = "Pleas select status")]
-        //public string StatusId { get; set; }
+        public string StatusId { get; set; }
         public Status Status { get; set; }
 
         [Required(ErrorMessage = "Pleas select priority")]
-        //public string PriorityId { get; set; }
+        public string PriorityId { get; set; }
         public Priority Priority { get; set; }
 
         [Required(ErrorMessage = "Pleas select project")]
-        //public int ProjectId { get; set; }
+        public int ProjectId { get; set; }
         public Project Project { get; set; }
     }
 }
