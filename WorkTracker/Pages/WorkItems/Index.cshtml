@@ -8,10 +8,26 @@
 @{var colour = ""; }
 
 <h2>Work items for: @Model.ProjName</h2>
-
-<p>
-    <a class="btn btn-secondary" asp-page="Create">+ New Work item</a>
-</p>
+<div class="container row">
+    <div class="col-md-7">
+        <p>
+            <a class="btn btn-secondary" asp-page="Create">+ New Work item</a>
+        </p>
+    </div>
+    <div class="col-md-5">
+        <form method="post">
+            <select name="status">
+                <option selected disabled>Select Status</option>
+                <option value="tod">To Do</option>
+                <option value="inp">In Progress</option>
+                <option value="don">Done</option>
+                <option value="all">All</option>
+            </select>
+            <input type="hidden" asp-for="ProjId" />
+            <input type="submit" value="Filter" />            
+        </form>
+    </div>
+</div>
 <table class="table">
     <thead>
         <tr>
