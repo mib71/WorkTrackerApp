@@ -1,0 +1,61 @@
+﻿@page 
+@model WorkTracker.Pages.WorkItems.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Work item Details</h2>
+
+<div>    
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkItem.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.WorkItem.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkItem.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.WorkItem.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkItem.Created)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.WorkItem.Created)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkItem.Completed)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.WorkItem.Completed)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkItem.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.WorkItem.Status.StatusId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkItem.Priority)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.WorkItem.Priority.PriorityId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkItem.Project)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.WorkItem.Project.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-sm btn-info" asp-page="./Edit" asp-route-id="@Model.WorkItem.Id">Edit</a> 
+    <a class="btn btn-sm btn-info" asp-page="./Index" asp-route-id="@Model.WorkItem.ProjectId">Back to List</a>
+    <a class="btn btn-sm btn-danger" asp-page="./Delete" asp-route-id="@Model.WorkItem.Id">Delete</a>
+</div>

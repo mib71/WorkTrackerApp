@@ -5,6 +5,8 @@
     ViewData["Title"] = "Index";
 }
 
+<h2>Projects</h2>
+
 <p>
     <a class="btn btn-secondary" asp-page="./Projects/Create">+ New Project</a>
 </p>
@@ -27,7 +29,7 @@
 @foreach (var item in Model.Project) {
         <tr>
             <td style="width: 70%">
-                <a href="./WorkItems/@item.ProjectId" >@item.Name</a>
+                <a href="./workItems/@item.ProjectId" >@item.Name</a>
                 @*@Html.DisplayFor(modelItem => item.Name)*@
             </td>
             @*<td>
@@ -37,7 +39,7 @@
                 @item.Created?.ToShortDateString()
             </td>
             <td style="width: 10%">                
-                <a class="btn btn-sm btn-info" asp-page="./Projects/Details" asp-route-id="@item.ProjectId">Details</a>                
+                <a class="btn btn-sm btn-info" asp-page="./Projects/Details" asp-route-ID="@item.ProjectId">Details</a>                
             </td>
         </tr>
 }

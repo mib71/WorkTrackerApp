@@ -1,0 +1,78 @@
+﻿@page "{id:int?}"
+@model WorkTracker.Pages.WorkItems.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@{var colour = ""; }
+
+<h2>Work items for: @Model.ProjName</h2>
+
+<p>
+    <a class="btn btn-secondary" asp-page="Create">+ New Work item</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkItem[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkItem[0].Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkItem[0].Completed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkItem[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkItem[0].Priority)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkItem[0].Project)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.WorkItem)
+        {
+
+            if (item.Status.StatusId == "To Do") // "To Do" "In Progress" "Done"
+                colour = "table-primary";
+            else if (item.Status.StatusId == "In Progress")            
+                colour = "table-warning";            
+            else if (item.Status.StatusId == "Done")            
+                colour = "table-success";            
+            else            
+                colour = "table-light";
+            
+            <tr class="@colour">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @item.Created?.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Completed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.StatusId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Priority.PriorityId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Project.Name)
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-info" asp-page="./Details" asp-route-id="@item.Id" asp-route-proj="@Model.ProjId">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
