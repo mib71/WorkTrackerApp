@@ -21,6 +21,7 @@ namespace WorkTracker.Pages.WorkItems
 
         [BindProperty]
         public WorkItem WorkItem { get; set; }
+        public int ProjId { get; set; } 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -32,7 +33,7 @@ namespace WorkTracker.Pages.WorkItems
             WorkItem = await _context.WorkItems
                 .Include(w => w.Priority)
                 .Include(w => w.Project)
-                .Include(w => w.Status).FirstOrDefaultAsync(m => m.Id == id);
+                .Include(w => w.Status).FirstOrDefaultAsync(m => m.Id == id);                     
 
             if (WorkItem == null)
             {
@@ -52,12 +53,13 @@ namespace WorkTracker.Pages.WorkItems
 
             if (WorkItem != null)
             {
+                ProjId = WorkItem.ProjectId;
                 _context.WorkItems.Remove(WorkItem);
                 await _context.SaveChangesAsync();
                 TempData["Success"] = "Work item deleted!";
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Index", new { id = ProjId });
         }
     }
 }
