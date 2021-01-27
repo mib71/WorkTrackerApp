@@ -43,7 +43,7 @@ namespace WorkTracker.Pages.WorkItems
 
             TempData["Success"] = "Workitem created!";
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Index", new { id = WorkItem.ProjectId });
         }
     }
 }

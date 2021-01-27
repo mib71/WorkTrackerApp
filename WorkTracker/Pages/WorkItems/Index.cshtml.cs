@@ -32,9 +32,7 @@ namespace WorkTracker.Pages.WorkItems
                 .Where(w => w.ProjectId == id)
                 .Include(w => w.Priority)
                 .Include(w => w.Status).ToListAsync();
-
-            //ProjName = WorkItem.Where(w => w.ProjectId == id).FirstOrDefault().ToString();
-            //ProjName = WorkItem.FirstOrDefault(p => p.ProjectId == id).ToString();
+                        
             ProjName = WorkItem.Select(p => p.Project.Name).FirstOrDefault().ToString();                       
         }
     }
