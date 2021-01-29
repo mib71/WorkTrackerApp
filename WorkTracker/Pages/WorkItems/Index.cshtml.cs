@@ -31,41 +31,59 @@ namespace WorkTracker.Pages.WorkItems
                 .Include(w => w.Project)
                 .Where(w => w.ProjectId == id)
                 .Include(w => w.Priority)
-                .Include(w => w.Status).ToListAsync();
+                .Include(w => w.Status).OrderBy(w => w.Status.StatusOrderBy).ToListAsync();
                         
             ProjName = await _context.Projects.Where(p => p.ProjectId == id).Select(p => p.Name).FirstOrDefaultAsync();            
         }
 
-        public void OnPost(int id, string status)
+        public void OnPost(int id, string status, string priority)
         {
-            if (status == "all")
-            {
-                WorkItem = _context.WorkItems.Include(w => w.Project)
+            if (status == null) status = "all";
+            if (priority == null) priority = "all";
+
+            WorkItem = _context.WorkItems.Include(w => w.Project)
                     .Where(w => w.ProjectId == id)
                     .Include(w => w.Priority)
-                    .Include(w => w.Status).ToList();
-            }
-            else if (status == "inp")
+                    .Include(w => w.Status).OrderBy(w => w.Status.StatusOrderBy).ToList();
+
+            if (status != "all")
             {
-                WorkItem = _context.WorkItems.Include(w => w.Project)
-                    .Where(w => w.ProjectId == id)
-                    .Include(w => w.Priority)
-                    .Include(w => w.Status).Where(w => w.StatusId == "In Progress").ToList();
+                WorkItem = WorkItem.Where(q => q.Status.StatusAlias == status).OrderBy(w => w.Status.StatusOrderBy).ToList();
             }
-            else if (status == "don")
+
+            if (priority != "all")
             {
-                WorkItem = _context.WorkItems.Include(w => w.Project)
-                    .Where(w => w.ProjectId == id)
-                    .Include(w => w.Priority)
-                    .Include(w => w.Status).Where(w => w.StatusId == "Done").ToList();
+                WorkItem = WorkItem.Where(q => q.Priority.PriorityAlias == priority).OrderBy(w => w.Status.StatusOrderBy).ToList();
             }
-            else if (status == "tod")
-            {
-                WorkItem = _context.WorkItems.Include(w => w.Project)
-                    .Where(w => w.ProjectId == id)
-                    .Include(w => w.Priority)
-                    .Include(w => w.Status).Where(w => w.StatusId == "To Do").ToList();
-            }
+
+            //if (status != null)
+            //{
+            //    WorkItem = _context.WorkItems.Include(w => w.Project)
+            //        .Where(w => w.ProjectId == id)
+            //        .Include(w => w.Priority)
+            //        .Include(w => w.Status).ToList();
+            //}
+            //else if (status == "inp")
+            //{
+            //    WorkItem = _context.WorkItems.Include(w => w.Project)
+            //        .Where(w => w.ProjectId == id)
+            //        .Include(w => w.Priority)
+            //        .Include(w => w.Status).Where(w => w.StatusId == "In Progress").ToList();
+            //}
+            //else if (status == "don")
+            //{
+            //    WorkItem = _context.WorkItems.Include(w => w.Project)
+            //        .Where(w => w.ProjectId == id)
+            //        .Include(w => w.Priority)
+            //        .Include(w => w.Status).Where(w => w.StatusId == "Done").ToList();
+            //}
+            //else if (status == "tod")
+            //{
+            //    WorkItem = _context.WorkItems.Include(w => w.Project)
+            //        .Where(w => w.ProjectId == id)
+            //        .Include(w => w.Priority)
+            //        .Include(w => w.Status).Where(w => w.StatusId == "To Do").ToList();
+            //}
 
         }
     }

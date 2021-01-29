@@ -16,15 +16,24 @@
     </div>
     <div class="col-md-5">
         <form method="post">
-            <select name="status">
-                <option selected disabled>Select Status</option>
-                <option value="tod">To Do</option>
-                <option value="inp">In Progress</option>
-                <option value="don">Done</option>
-                <option value="all">All</option>
-            </select>
+            @*<div class="form-group">*@
+                <select name="status">
+                    <option selected disabled>Select Status</option>
+                    <option value="tod">To Do</option>
+                    <option value="inp">In Progress</option>
+                    <option value="don">Done</option>                    
+                </select>
+            @*</div>*@
+            @*<div class="form-group">*@
+                <select name="priority">
+                    <option selected disabled>Select Priority</option>
+                    <option value="low">Low</option>
+                    <option value="med">Medium</option>
+                    <option value="hig">High</option>                    
+                </select>
+            @*</div>*@
             <input type="hidden" asp-for="ProjId" />
-            <input type="submit" value="Filter" />            
+            <input type="submit" value="Filter" />
         </form>
     </div>
 </div>
@@ -56,7 +65,7 @@
         @foreach (var item in Model.WorkItem)
         {
 
-            if (item.Status.StatusId == "To Do") // "To Do" "In Progress" "Done"
+            if (item.Status.StatusId == "To Do") 
                 colour = "table-primary";
             else if (item.Status.StatusId == "In Progress")            
                 colour = "table-warning";            
@@ -73,7 +82,7 @@
                     @item.Created?.ToShortDateString()
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Completed)
+                    @item.Completed?.ToString("g")
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Status.StatusId)
