@@ -15,23 +15,19 @@
         </p>
     </div>
     <div class="col-md-5">
-        <form method="post">
-            @*<div class="form-group">*@
+        <form method="post">            
                 <select name="status">
                     <option selected disabled>Select Status</option>
                     <option value="tod">To Do</option>
                     <option value="inp">In Progress</option>
                     <option value="don">Done</option>                    
-                </select>
-            @*</div>*@
-            @*<div class="form-group">*@
+                </select>            
                 <select name="priority">
                     <option selected disabled>Select Priority</option>
                     <option value="low">Low</option>
                     <option value="med">Medium</option>
                     <option value="hig">High</option>                    
-                </select>
-            @*</div>*@
+                </select>            
             <input type="hidden" asp-for="ProjId" />
             <input type="submit" value="Filter" />
         </form>

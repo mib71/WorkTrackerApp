@@ -36,7 +36,7 @@ namespace WorkTracker.Pages.WorkItems
             ProjName = await _context.Projects.Where(p => p.ProjectId == id).Select(p => p.Name).FirstOrDefaultAsync();            
         }
 
-        public async Task OnPost(int id, string status, string priority)
+        public async Task OnPostAsync(int id, string status, string priority)
         {            
             if (status == null) status = "all";
             if (priority == null) priority = "all";
