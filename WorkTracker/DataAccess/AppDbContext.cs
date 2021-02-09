@@ -22,9 +22,9 @@ namespace WorkTracker.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Status>().HasData(
-                new Status { StatusId = "To Do", StatusAlias = "tod" },
-                new Status { StatusId = "In Progress" , StatusAlias = "inp" },
-                new Status { StatusId = "Done"  , StatusAlias = "don"}
+                new Status { StatusId = "To Do", StatusAlias = "tod", StatusOrderBy = 2 },
+                new Status { StatusId = "In Progress" , StatusAlias = "inp", StatusOrderBy = 1 },
+                new Status { StatusId = "Done"  , StatusAlias = "don", StatusOrderBy = 3}
                 );
 
             modelBuilder.Entity<Priority>().HasData(

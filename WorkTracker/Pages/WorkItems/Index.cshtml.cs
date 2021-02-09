@@ -31,9 +31,32 @@ namespace WorkTracker.Pages.WorkItems
                 .Include(w => w.Project)
                 .Where(w => w.ProjectId == id)
                 .Include(w => w.Priority)
-                .Include(w => w.Status).ToListAsync();
+                .Include(w => w.Status).OrderBy(w => w.Status.StatusOrderBy).ToListAsync();
                         
-            ProjName = WorkItem.Select(p => p.Project.Name).FirstOrDefault().ToString();                       
+            ProjName = await _context.Projects.Where(p => p.ProjectId == id).Select(p => p.Name).FirstOrDefaultAsync();            
+        }
+
+        public async Task OnPostAsync(int id, string status, string priority)
+        {            
+            if (status == null) status = "all";
+            if (priority == null) priority = "all";
+
+            WorkItem = await _context.WorkItems.Include(w => w.Project)
+                    .Where(w => w.ProjectId == id)
+                    .Include(w => w.Priority)
+                    .Include(w => w.Status).OrderBy(w => w.Status.StatusOrderBy).ToListAsync();
+
+            ProjName = await _context.Projects.Where(p => p.ProjectId == id).Select(p => p.Name).FirstOrDefaultAsync();
+
+            if (status != "all")
+            {
+                WorkItem = WorkItem.Where(q => q.Status.StatusAlias == status).OrderBy(w => w.Status.StatusOrderBy).ToList();
+            }
+
+            if (priority != "all")
+            {
+                WorkItem = WorkItem.Where(q => q.Priority.PriorityAlias == priority).OrderBy(w => w.Status.StatusOrderBy).ToList();
+            }
         }
     }
 }

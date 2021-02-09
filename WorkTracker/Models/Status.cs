@@ -9,5 +9,6 @@ namespace WorkTracker.Models
     {
         public string StatusId { get; set; }
         public string StatusAlias { get; set; }
+        public int StatusOrderBy { get; set; }
     }
 }
