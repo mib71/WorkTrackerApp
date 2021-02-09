@@ -19,11 +19,15 @@ namespace WorkTracker.Pages.WorkItems
             _context = context;
         }
 
-        public IActionResult OnGet()
+        [BindProperty(SupportsGet = true)]
+        public int ProjId { get; set; }
+
+        public IActionResult OnGet(int proj)
         {
-        ViewData["PriorityId"] = new SelectList(_context.Priorities, "PriorityId", "PriorityId");
-        ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "Name");
-        ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusId");
+            ProjId = proj;
+            ViewData["PriorityId"] = new SelectList(_context.Priorities, "PriorityId", "PriorityId");
+            ViewData["ProjectId"] = new SelectList(_context.Projects.Where(w => w.ProjectId == proj), "ProjectId", "Name");
+            ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusId");
             return Page();
         }
 

@@ -33,20 +33,20 @@
                 <span asp-validation-for="WorkItem.Completed" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="WorkItem.StatusId" class="control-label"></label>
-                <select asp-for="WorkItem.StatusId" class ="form-control" asp-items="ViewBag.StatusId"></select>
+                <label asp-for="WorkItem.StatusId" class="control-label">Status</label>
+                <select asp-for="WorkItem.StatusId" class="form-control" asp-items="ViewBag.StatusId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="WorkItem.PriorityId" class="control-label"></label>
-                <select asp-for="WorkItem.PriorityId" class ="form-control" asp-items="ViewBag.PriorityId"></select>
+                <label asp-for="WorkItem.PriorityId" class="control-label">Priority</label>
+                <select asp-for="WorkItem.PriorityId" class="form-control" asp-items="ViewBag.PriorityId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="WorkItem.ProjectId" class="control-label"></label>
+                <label asp-for="WorkItem.ProjectId" class="control-label">Project</label>
                 <select asp-for="WorkItem.ProjectId" class ="form-control" asp-items="ViewBag.ProjectId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-sm btn-info" />
-                <a class="btn btn-sm btn-info" asp-page="Index">Back to List</a>
+                <a class="btn btn-sm btn-info" asp-page="Index" asp-route-id="@Model.ProjId">Back to List</a>
             </div>
         </form>
     </div>
