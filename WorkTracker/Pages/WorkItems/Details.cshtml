@@ -26,13 +26,13 @@
             @Html.DisplayNameFor(model => model.WorkItem.Created)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.WorkItem.Created)
+            @Model.WorkItem.Created?.ToString("g")
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.WorkItem.Completed)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.WorkItem.Completed)
+            @Model.WorkItem.Completed?.ToString("g")
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.WorkItem.Status)
